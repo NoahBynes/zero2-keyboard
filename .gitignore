@@ -12,3 +12,4 @@ _pipcache/
 _tmp/
 _build*/
 dist/
+firmware-patch/Zero2_V1.08.dat

@@ -15,13 +15,41 @@ if getattr(sys, "frozen", False):
     BASE = Path(sys.executable).resolve().parent
 else:
     BASE = HERE.parent                       # zero2-keyboard/
-FW_OFFICIAL = BASE / "firmware-patch" / "Zero2_V1.08.dat"
+FW_DIR = BASE / "firmware-patch"
+FW_OFFICIAL = FW_DIR / "Zero2_V1.08.dat"
 CRYPT_DIR = BASE / "_upstream" / "8cryptdo"
 TABLE = bytes.fromhex("0607080911120a0d0b0c0e10")   # original c d e f n o g j h i k m
 BUTTONS = ["Up", "Down", "Left", "Right", "Select", "Start", "A", "B", "X", "Y", "L", "R"]
 
-if not FW_OFFICIAL.exists():
-    raise SystemExit(f"缺少官方固件：{FW_OFFICIAL}")
+
+def _say(msg):
+    try:
+        print(msg)
+    except Exception:
+        pass
+
+
+def _ensure_official_firmware():
+    """The repo doesn't ship 8BitDo's copyrighted firmware; fetch v1.08 on demand."""
+    if FW_OFFICIAL.exists():
+        return
+    sys.path.insert(0, str(FW_DIR))
+    try:
+        import official_firmware  # noqa: PLC0415
+        _say("未找到官方固件，正在从 8BitDo 官方接口下载 v1.08 …")
+        official_firmware.download(str(FW_OFFICIAL), quiet=True)
+    except Exception as e:  # noqa: BLE001
+        raise SystemExit(
+            "缺少官方固件：%s\n自动下载失败：%s\n\n"
+            "请先运行：python firmware-patch/download_official_firmware.py\n"
+            "或从 8BitDo 官方更新器页面下载 v1.08，放到 %s"
+            % (FW_OFFICIAL, e, FW_OFFICIAL))
+    if not FW_OFFICIAL.exists():
+        raise SystemExit("官方固件下载后仍不存在：%s" % FW_OFFICIAL)
+    _say("官方固件已就绪：%s" % FW_OFFICIAL)
+
+
+_ensure_official_firmware()
 if not CRYPT_DIR.exists():
     raise SystemExit(f"缺少 8cryptdo：{CRYPT_DIR}")
 sys.path.insert(0, str(CRYPT_DIR))

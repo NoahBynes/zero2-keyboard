@@ -13,6 +13,11 @@ R+Start 键盘模式实测 **12/12 键输出正确**（PageUp/PageDown/Home/End/
 
 ## 运行
 
+- **首次使用先下载官方固件**（仓库不包含 8BitDo 固件二进制）：
+  ```
+  python firmware-patch/download_official_firmware.py
+  ```
+  生成 `firmware-patch/Zero2_V1.08.dat`（GUI 发现缺文件时也会自动下载）。
 - **双击桌面快捷方式 `8BitDo Zero2 改键刷写`**（无黑框：快捷方式调用 `wscript 启动.vbs`，由 `pythonw` 启动界面）。
 - 也可以双击本目录 `启动.vbs`（无窗口），或 `启动.bat`（内部同样转给 VBS，只在双击 bat 时闪一下）。
 - 依赖：Windows 10/11 + Python 3.8+（需带 tkinter；官方安装包默认自带）。

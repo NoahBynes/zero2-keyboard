@@ -70,6 +70,24 @@
 
 ---
 
+## 2.9 首次使用：下载官方固件（仓库不再包含固件二进制）
+
+由于 8BitDo 固件的版权原因，仓库**不提供**官方 `.dat` 文件。首次构建/刷写前先在仓库根目录运行：
+
+```bash
+python firmware-patch/download_official_firmware.py
+```
+
+脚本会：
+- `POST http://dl.8bitdo.com:8080/firmware/select`（Headers: `Beta: 1`, `Type: 30`）取 Zero 2 的 v1.08 条目；
+- 从 `http://dl.8bitdo.com:8080/firmwareFile/upload/<uuid>.dat` 下载到 `firmware-patch/Zero2_V1.08.dat`；
+- 校验大小 `124472` 与内容 `sha256=43a31356…609da808`（官方 API 里的 `md5` 字段是 `MD5(str(fileSize))`，不是内容哈希）；
+- 下载失败时打印手动下载指引；也可以从官方更新器页面自己下 v1.08，放到该路径。
+
+GUI 首次启动时如果发现缺少固件，也会自动尝试下载（`gui/fwlib.py` 调用同一个模块）。
+
+---
+
 ## 3. 我们实际做了什么（证据链）
 
 ### 3.1 拿到官方固件（而不是"从官网下载"——官网已不提供直链）
@@ -106,7 +124,7 @@ hosts 劫持/DLL 直调作为备用方案保留在 [`flash/README.md`](flash/REA
 ### 3.4 已经验证 vs 还没验证
 | 项 | 状态 |
 |---|---|
-| 官方固件获取（v1.06/v1.08） | ✅ 已下载并校验 sha256 |
+| 官方固件获取（v1.06/v1.08） | ✅ 由 `download_official_firmware.py` 从官方接口下载并校验 sha256 |
 | 解密 / 重加密管线（与官方逐字节一致） | ✅ 已证明 |
 | 键位表定位、索引↔按键对应 | ✅ 官方值 + 社区实测 12/12 吻合 |
 | 补丁文件结构自检（大小/头部/仅 24 字节差异） | ✅ 通过 |
@@ -119,6 +137,7 @@ hosts 劫持/DLL 直调作为备用方案保留在 [`flash/README.md`](flash/REA
 | 段1（蓝牙 SoC 固件）是否被写入 | ⚠️ updateLog 只显示段0（主控 0xc800 @0x08003400）被写；键盘映射由段0生效，输出正确 |
 
 ### 3.5 现在的状态与下一步
+0. 首次使用先运行 `python firmware-patch/download_official_firmware.py` 下载官方 v1.08（仓库不含固件）；
 1. 设备当前跑的是 **`1.08.1` 翻页器固件**（官方 1.08 基线 + 12 字节键位表改动）；想换布局随时再刷；
 2. **推荐用图形界面**（[`gui/`](gui/README.md)）：双击 `gui/启动.bat` → 选预设/改键 → 点「刷写到手柄」，自动生成并刷入；标签自动 `1.08.2`、`1.08.3`…
 3. 版本规则：标签 `1.08.N`；固件头保持 `108`（官方基线），对更新器报 `1.08 + N/1000`，所以更新器界面显示 `V1.08` 但数值递增、可连续刷；
@@ -139,7 +158,9 @@ hosts 劫持/DLL 直调作为备用方案保留在 [`flash/README.md`](flash/REA
 zero2-keyboard/
 ├─ README.md                 ← 本文件（总结+证据链）
 ├─ firmware-patch/           ← 设备级改键的核心
-│  ├─ Zero2_V1.08.dat        ← 官方固件原件（v1.06 也在）
+│  ├─ Zero2_V1.08.dat        ← 官方固件（运行下载脚本后生成；仓库不含、已 gitignore）
+│  ├─ download_official_firmware.py ← 从官方接口下载 v1.08 并校验
+│  ├─ official_firmware.py   ← 下载/校验模块（GUI 的 fwlib 也会调用）
 │  ├─ patch_fw.py            ← 解密/定位表/打补丁/重加密/自检工具
 │  ├─ validate_patch.py      ← 补丁差异验证
 │  ├─ analyze_fw.py / deep_analyze.py / table_context.py / refs.py  ← 逆向分析脚本
