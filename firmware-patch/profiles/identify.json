@@ -1,0 +1,15 @@
+{
+  "_comment": "校准用映射：12 个按键依次输出 F1..F12。刷入后连接键盘模式，逐个按键看输出哪个 F 键，即可验证 index 顺序（Up,Down,Left,Right,Select,Start,A,B,X,Y,L,R）。",
+  "Up": "0x3A",
+  "Down": "0x3B",
+  "Left": "0x3C",
+  "Right": "0x3D",
+  "Select": "0x3E",
+  "Start": "0x3F",
+  "A": "0x40",
+  "B": "0x41",
+  "X": "0x42",
+  "Y": "0x43",
+  "L": "0x44",
+  "R": "0x45"
+}

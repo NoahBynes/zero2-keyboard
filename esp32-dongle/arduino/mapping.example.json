@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "target": "8BitDo Zero 2 -> USB HID keyboard (CH9329)",
+  "input_mode": "gamepad",
+  "input_mode_note": "Zero 2 用 Start+X 开机进入 Windows(X-input) 模式；所有 gamepad 模式均可（Switch/Android/macOS）。按钮 id 按实体丝印命名，固件内部做位置语义 -> 丝印语义的换算。",
+  "description": "默认一套绘图快捷键。按住类动作（mods 非空且 key 为 null）会一直保持修饰键，可与其它按钮随意叠加，例如 X(Shift)+Up('[) = Shift+[ 柔化笔刷；R(Alt)+触笔点击 = Photoshop 吸管。",
+  "buttons": [
+    { "id": "up",     "label": "十字上",  "mods": [],                "key": "[",     "desc": "笔刷变小" },
+    { "id": "down",   "label": "十字下",  "mods": [],                "key": "]",     "desc": "笔刷变大" },
+    { "id": "left",   "label": "十字左",  "mods": ["ctrl"],          "key": "[",     "desc": "图层下移 (Ctrl+[)" },
+    { "id": "right",  "label": "十字右",  "mods": ["ctrl"],          "key": "]",     "desc": "图层上移 (Ctrl+])" },
+    { "id": "a",      "label": "A (右)", "mods": ["ctrl"],          "key": "z",     "desc": "撤销 (Ctrl+Z)" },
+    { "id": "b",      "label": "B (下)", "mods": ["ctrl", "shift"], "key": "z",     "desc": "重做 (Ctrl+Shift+Z)" },
+    { "id": "x",      "label": "X (上)", "mods": ["shift"],         "key": null,    "desc": "按住 Shift：约束比例 / 加选 / 柔化组合" },
+    { "id": "y",      "label": "Y (左)", "mods": [],                "key": "space", "desc": "按住空格：临时抓手（平移画布）" },
+    { "id": "l",      "label": "L",      "mods": ["ctrl"],          "key": null,    "desc": "按住 Ctrl：组合修饰键" },
+    { "id": "r",      "label": "R",      "mods": ["alt"],           "key": null,    "desc": "按住 Alt：吸管 / 临时切换" },
+    { "id": "select", "label": "Select", "mods": [],                "key": "tab",   "desc": "显示/隐藏面板" },
+    { "id": "start",  "label": "Start",  "mods": [],                "key": "esc",   "desc": "取消选择 / 退出变换" }
+  ]
+}

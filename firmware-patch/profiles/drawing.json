@@ -1,0 +1,15 @@
+{
+  "_comment": "绘画软件映射（Clip Studio Paint / Photoshop 风格）。L=左Ctrl、R=左Shift 作为修饰键；按住 L 再按 A 即 Ctrl+Z 撤销，按住 L 再按 B 即 Ctrl+Y 重做。注意：修饰键依赖宿主系统把 HID 键码 0xE0/0xE1 识别为 Ctrl/Shift（绝大多数 Windows/macOS/iPadOS 可以；若某个按键无反应，用 identify.json 校准后改成普通键）。",
+  "Up": "0x52",
+  "Down": "0x51",
+  "Left": "0x50",
+  "Right": "0x4F",
+  "Select": "0x29",
+  "Start": "0x2C",
+  "A": "0x1D",
+  "B": "0x1C",
+  "X": "0x2F",
+  "Y": "0x30",
+  "L": "0xE0",
+  "R": "0xE1"
+}

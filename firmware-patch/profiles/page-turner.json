@@ -1,0 +1,15 @@
+{
+  "_comment": "翻页/阅读器映射：方向键 PageUp/PageDown/Home/End，A=空格，B=回车，X=Esc，Y=Tab，L/R=左右方向键。适合看漫画/小说时单手翻页。",
+  "Up": "0x4B",
+  "Down": "0x4E",
+  "Left": "0x4A",
+  "Right": "0x4D",
+  "Select": "0x2A",
+  "Start": "0x28",
+  "A": "0x2C",
+  "B": "0x28",
+  "X": "0x29",
+  "Y": "0x2B",
+  "L": "0x50",
+  "R": "0x4F"
+}

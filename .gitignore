@@ -1,0 +1,14 @@
+﻿# runtime / generated
+gui/config.json
+gui/saved_profiles.json
+gui/runtime.log
+firmware-patch/out/
+flash/_*.png
+flash/_*.log
+flash/_*.err
+__pycache__/
+*.pyc
+_pipcache/
+_tmp/
+_build*/
+dist/

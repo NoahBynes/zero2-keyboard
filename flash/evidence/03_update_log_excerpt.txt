@@ -1,0 +1,43 @@
+﻿2026-11-13 20:43:20 -  ------------------------------UsbUpdateProcessV2
+2026-11-13 20:43:20 -  Open_Hid \\?\hid#vid_0483&pid_5760#7&fbca8a5&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030} 
+2026-11-13 20:43:20 -  StartUpdate
+2026-11-13 20:43:20 -  verification id ok
+2026-11-13 20:43:20 -  firmware_type 1 
+2026-11-13 20:43:20 -  GetUpdateFileMsg
+2026-11-13 20:43:20 -  1 gamepad_info :0
+2026-11-13 20:43:20 -  Version: 109 , Len: c800 desAddress:8003400 file_offset:0 
+2026-11-13 20:43:20 -  SendFirmwareHeader
+2026-11-13 20:43:22 -  SendFirmwareHeader - done 6 0 16 1 0 14 96 38 38 38 
+2026-11-13 20:43:22 -  desVersion is 109 
+2026-11-13 20:43:22 -  update file is 0xc800
+2026-11-13 20:43:22 -  progress -1
+2026-11-13 20:43:22 -  progress 0
+2026-11-13 20:43:32 -  progress 99
+2026-11-13 20:43:32 -  update successful
+2026-11-13 20:43:32 -  firmware version: e0000000 
+2026-11-13 20:43:32 -  Exit Usb_UpdateThread: 1 
+2026-11-13 20:43:35 -  Open_Hid \\?\hid#vid_2dc8&pid_9018#7&3aa2da04&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030} 
+
+--- full progress range ---
+2026-11-13 20:43:20 -  ------------------------------UsbUpdateProcessV2
+2026-11-13 20:43:20 -  Open_Hid \\?\hid#vid_0483&pid_5760#7&fbca8a5&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030} 
+2026-11-13 20:43:20 -  StartUpdate
+2026-11-13 20:43:20 -  verification id ok
+2026-11-13 20:43:20 -  firmware_type 1 
+2026-11-13 20:43:20 -  GetUpdateFileMsg
+2026-11-13 20:43:20 -  Version: 109 , Len: c800 desAddress:8003400 file_offset:0 
+2026-11-13 20:43:20 -  SendFirmwareHeader
+2026-11-13 20:43:22 -  SendFirmwareHeader - done 6 0 16 1 0 14 96 38 38 38 
+2026-11-13 20:43:22 -  desVersion is 109 
+2026-11-13 20:43:22 -  update file is 0xc800
+2026-11-13 20:43:22 -  progress 0
+2026-11-13 20:43:22 -  progress 1
+2026-11-13 20:43:24 -  progress 23
+2026-11-13 20:43:27 -  progress 52
+2026-11-13 20:43:31 -  progress 84
+2026-11-13 20:43:32 -  progress 98
+2026-11-13 20:43:32 -  progress 99
+2026-11-13 20:43:32 -  update successful
+2026-11-13 20:43:32 -  firmware version: e0000000 
+2026-11-13 20:43:32 -  Exit Usb_UpdateThread: 1 
+2026-11-13 20:43:35 -  Open_Hid \\?\hid#vid_2dc8&pid_9018#7&3aa2da04&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030} 
