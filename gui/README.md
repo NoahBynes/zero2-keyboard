@@ -1,4 +1,4 @@
-# Zero 2 自定义键盘 GUI（改键 + 一键刷写）
+﻿# Zero 2 自定义键盘 GUI（改键 + 一键刷写）
 
 Windows 小工具，界面参考 **Xbox Accessories 的按键映射**：左边是官方 Zero 2 产品渲染图，
 **点手柄上的某个键**（亮蓝圈）→ 右边选择它要输出的键盘键；还能把当前这套键位
@@ -81,7 +81,7 @@ python zero2_kb_gui.py --selftest                             # 自检
 | `controller_small.png` | 界面用手柄底图（官方 8BitDo 产品渲染图裁剪/缩放，仅展示用；标签在图片外，用细引线指向按键） |
 | `controller_base.png` | 底图原尺寸版本（660×330，重新生成小图用） |
 | `make_icon.py` | 生成应用图标（`zero2.png` + 多尺寸 `zero2.ico`） |
-| `zero2.ico` / `zero2.png` | 应用图标：青绿色圆角底 + 白色手柄（D-pad/ABXY/select/start/肩键） |
+| `zero2.ico` / `zero2.png` | 应用图标（黑白极简）：黑色圆角底 + 白色 D-pad 与 ABXY 菱形，不含机身/肩键 |
 | `config.json` | 运行后生成：保存当前映射与下一次的 `1.08.N` |
 | `saved_profiles.json` | 「我的设定」：命名保存的键位方案 |
 | `启动.vbs` | 无黑框启动器（wscript → pythonw），桌面快捷方式指向它 |

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Draw the Zero2 app icon (a stylized 8BitDo Zero 2 controller) and export .ico.
+"""Draw the Zero2 app icon: minimal black/white D-pad + ABXY only.
 
-Design: teal rounded-square tile + white controller glyph (shoulder bumps, D-pad,
-ABXY diamond, select/start). Rendered at 1024px and downsampled for crisp small sizes.
+Black rounded-square tile with a white D-pad (left) and a white ABXY diamond
+(right). No controller body, no shoulders, no labels.
 
 Usage:
     python make_icon.py                 # writes zero2.png + zero2.ico next to this file
@@ -13,7 +13,7 @@ from PIL import Image, ImageDraw
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SIZE = 1024
-TEAL = (18, 184, 176, 255)       # #12B8B0
+BLACK = (17, 17, 17, 255)        # #111111
 WHITE = (255, 255, 255, 255)
 TRANSPARENT = (0, 0, 0, 0)
 
@@ -28,29 +28,17 @@ def make(size=SIZE):
     def P(v):
         return int(round(v * s))
 
-    # rounded-square tile
-    d.rounded_rectangle([0, 0, size - 1, size - 1], radius=P(225), fill=TEAL)
+    # black rounded-square tile
+    d.rounded_rectangle([0, 0, size - 1, size - 1], radius=P(228), fill=BLACK)
 
-    # controller glyph (white)
-    # shoulder bumps (drawn first; body covers their lower part)
-    d.rounded_rectangle([P(238), P(330), P(446), P(486)], radius=P(46), fill=WHITE)
-    d.rounded_rectangle([P(578), P(330), P(786), P(486)], radius=P(46), fill=WHITE)
-    # body pill
-    d.rounded_rectangle([P(170), P(426), P(854), P(726)], radius=P(150), fill=WHITE)
+    # D-pad (left): rounded vertical + horizontal bars
+    d.rounded_rectangle([P(244), P(366), P(352), P(658)], radius=P(38), fill=WHITE)
+    d.rounded_rectangle([P(154), P(460), P(442), P(568)], radius=P(38), fill=WHITE)
 
-    # D-pad: teal cross cut into the white body
-    d.rounded_rectangle([P(328), P(478), P(398), P(712)], radius=P(30), fill=TEAL)
-    d.rounded_rectangle([P(266), P(556), P(460), P(626)], radius=P(30), fill=TEAL)
-
-    # ABXY diamond
-    cx, cy, off, r = 714, 586, 78, P(28)
+    # ABXY diamond (right)
+    cx, cy, off, r = 714, 512, 132, P(64)
     for px, py in ((cx, cy - off), (cx - off, cy), (cx + off, cy), (cx, cy + off)):
-        d.ellipse([P(px) - r, P(py) - r, P(px) + r, P(py) + r], fill=TEAL)
-
-    # select / start
-    for px in (548, 612):
-        r2 = P(18)
-        d.ellipse([P(px) - r2, P(682) - r2, P(px) + r2, P(682) + r2], fill=TEAL)
+        d.ellipse([P(px) - r, P(py) - r, P(px) + r, P(py) + r], fill=WHITE)
 
     return img
 
