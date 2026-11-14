@@ -80,11 +80,27 @@ python zero2_kb_gui.py --selftest                             # 自检
 | `hidmap.py` | HID 键码表、12 键顺序（命令行 --preset 仍可用内置预设） |
 | `controller_small.png` | 界面用手柄底图（官方 8BitDo 产品渲染图裁剪/缩放，仅展示用；标签在图片外，用细引线指向按键） |
 | `controller_base.png` | 底图原尺寸版本（660×330，重新生成小图用） |
+| `make_icon.py` | 生成应用图标（`zero2.png` + 多尺寸 `zero2.ico`） |
+| `zero2.ico` / `zero2.png` | 应用图标：青绿色圆角底 + 白色手柄（D-pad/ABXY/select/start/肩键） |
 | `config.json` | 运行后生成：保存当前映射与下一次的 `1.08.N` |
 | `saved_profiles.json` | 「我的设定」：命名保存的键位方案 |
 | `启动.vbs` | 无黑框启动器（wscript → pythonw），桌面快捷方式指向它 |
 | `启动.bat` | 兼容入口（转给 启动.vbs） |
 | `_gui_shot.png` | 界面截图 |
+
+## 打包 exe（可选）
+
+如果不想让目标电脑装 Python，可以用 PyInstaller 打包成 `Zero2.exe`（带手柄图标）：
+
+```powershell
+python gui/make_icon.py                      # 生成 zero2.ico
+python -m PyInstaller --onefile --windowed --name Zero2 --icon gui/zero2.ico gui/zero2_kb_gui.py
+```
+
+打包版还需要把下面这些资源放到 exe 旁边（与仓库目录结构一致）：
+`controller_small.png`、`firmware-patch/`（含下载好的官方固件）、`_upstream/8cryptdo/`、
+`_fw-tools/win/8BitDo_Firmware_Updater_Win/`（官方更新器）、`flash/` 下的 `_click_name.ps1`、
+`_select_zero2.ps1`、`_shot.ps1`。程序在 frozen 模式下会以 exe 所在目录作为资源根目录。
 
 ## 注意
 
